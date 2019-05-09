@@ -5,11 +5,11 @@ import java.io.IOException;
 
 import javax.swing.plaf.FileChooserUI;
 
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -19,13 +19,22 @@ import org.testng.annotations.Test;
 public class Take_Screen_Shot {
 	WebDriver driver;
 	@Test
-	public void take_screen_shot()
+	public void take_screen_shot() throws InterruptedException
 	{
-		System.setProperty("webdriver.chrome.driver","C:\\Users\\Pranab Roy\\Desktop\\Drivers\\chromedriver.exe");
-		driver=new ChromeDriver();
-		driver.get("https:www.bbc.com");
+		
+		  System.setProperty(
+		  "webdriver.chrome.driver","C:\\Users\\Pranab Roy\\Desktop\\Driver\\chromedriver.exe"
+		  ); driver=new ChromeDriver();
+		 
+		/*
+		 * System.setProperty(
+		 * "webdriver.gecko.driver","C:\\Users\\Pranab Roy\\Desktop\\Driver\\geckodriver.exe"
+		 * ); driver=new FirefoxDriver();
+		 */
+		
+		driver.get("https://www.bbc.com/");
 		driver.manage().window().maximize();
-		Assert.assertEquals(driver.getTitle(), "yahoo");
+		Thread.sleep(10000);
 	}
 	@AfterMethod
 	public void after_Test_Activity(ITestResult result) throws IOException
@@ -54,7 +63,7 @@ public class Take_Screen_Shot {
 
         //Copy file at destination
 
-        FileUtils.copyFile(SrcFile, DestFile);
+        //FileUtils.copyFile(SrcFile, DestFile);
 		
 	}
 
